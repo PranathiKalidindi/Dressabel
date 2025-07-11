@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designer Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #d3b89e, #f7ede2);
+
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column; /* Ensure vertical stacking */
+            align-items: center; /* Center the containers */
+        }
+header {
+width:100%;
+            background-color: #f8f9fa;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header img {
+            height: 70px;
+margin-left:25px;
+        }
+        header .username {
+            font-size: 27px;
+            margin-left:1100px;
+        }
+        header button {
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+margin-right:10px;
+        }
+        header button:hover {
+            background-color: #5753d6;
+        }
+
+
+        .container{
+max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 100%;
+} 
+        .container1 { /* Combine styles for both containers */
+            max-width: 1200px;
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 100%; /* Ensure full width on smaller screens */
+        }
+
+        .header {
+            text-align:center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            color: #333;
+            margin: 0;
+
+        }
+
+        .profile-poster {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .profile-box,
+        .poster-box {
+            flex: 1;
+            padding: 10px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+max-width:550px;
+height:500px;
+margin:0;
+        }
+
+        .profile-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 6cm;
+height:6cm;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .details p {
+            font-size: 20px;
+            margin: 5px 0;
+        }
+
+        .poster-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+height:90%;
+        }
+
+        .work-section {
+            margin-top: 20px;
+margin-left:24px;
+        }
+
+        .images-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .images-gallery img {
+            width:370px;
+height:450px;
+border-radius: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .images-gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .upload-work {
+            margin-top: 10px;
+        }
+
+        .upload-work label {
+            font-size: 23px;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .upload-work input {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .profile-poster {
+                flex-direction: column;
+            }
+
+            .images-gallery img {
+                width: 100%;
+            }
+        }
+.edit-button {
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .edit-button:hover {
+            color: #0056b3;
+        }
+
+        .edit-fields {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .edit-fields input {
+            margin-bottom: 5px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+<!-- Header Section -->
+    <header>
+        <div>
+            <img src="07Oct24_Anis_Free_Upload___1_-removebg-preview.png" alt="Logo">
+        </div>
+        <div class="username" id="usernameDisplay">Welcome, <span id="designerName">User</span></div>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="header">
+            <h2>Designer Information</h2>
+        </div>
+
+        <!-- Profile and Poster Section -->
+        <div class="profile-poster">
+            <!-- Profile Box -->
+            <div class="profile-box">
+<h2>Deginer Details      
+</h2>
+                <img id="profile-image" class="profile-image" alt="Profile Image">                
+<div id="designer-details" class="details"></div>
+            <button class="edit-button" onclick="openModal()">Edit Details</button>
+    </div>
+
+
+            <!-- Poster Box -->
+            <div class="poster-box">
+<h2> Designer Poster<span class="edit-button" onclick="editPoster()">✏️</span></h2>
+</h2>
+                <img id="poster-image" class="poster-image" alt="Poster Image"> <input type="file" id="edit-poster" class="edit-fields" accept="image/*" onchange="updatePoster()">
+
+           </div>
+        </div>
+    </div>
+    <!-- Modal -->
+<div class="modal" id="edit-modal">
+    <div class="modal-content">
+        <h2>Edit Designer Details</h2>
+        <input type="text" id="edit-name" placeholder="Name">
+        <input type="text" id="edit-place" placeholder="Place">
+        <input type="text" id="edit-address" placeholder="Address">
+        <input type="email" id="edit-email" placeholder="Email">
+        <input type="tel" id="edit-phone" placeholder="Phone">
+        <button onclick="saveDetails()">Save</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
+
+    <div class="container1">
+        <!-- Work Images Section -->
+        <div class="work-section">
+            <h3>Work Images</h3>
+            <div class="images-gallery" id="work-images-gallery"></div>
+
+            <!-- Add Work Image -->
+            <div class="upload-work">
+                <label for="add-work-image">Add Another Work Image:</label>
+                <input type="file" id="add-work-image" accept="image/*">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Retrieve data from localStorage
+        const designerName = localStorage.getItem('designerName') || 'John Doe';
+        const designerPlace = localStorage.getItem('designerPlace') || 'New York';
+        const designerAddress = localStorage.getItem('designerAddress') || '123 Main Street';
+        const designerEmail = localStorage.getItem('designerEmail') || 'johndoe@example.com';
+        const designerPhone = localStorage.getItem('designerPhone') || '+123456789';
+        const profileImage = localStorage.getItem('profileImage') || 'https://via.placeholder.com/100';
+        const posterImage = localStorage.getItem('posterImage') || 'https://via.placeholder.com/300';
+        const workImages = JSON.parse(localStorage.getItem('workImages')) || [];
+
+        // Populate the details dynamically
+        const detailsDiv = document.getElementById('designer-details');
+        detailsDiv.innerHTML = `
+            <p><strong>Name:</strong> ${designerName}</p>
+            <p><strong>Place:</strong> ${designerPlace}</p>
+            <p><strong>Address:</strong> ${designerAddress}</p>
+            <p><strong>Email:</strong> ${designerEmail}</p>
+            <p><strong>Phone:</strong> ${designerPhone}</p>
+        `;
+
+        // Populate profile and poster images dynamically
+        document.getElementById('profile-image').src = profileImage;
+        document.getElementById('poster-image').src = posterImage;
+
+        // Populate work images dynamically
+        const workImagesGallery = document.getElementById('work-images-gallery');
+        const renderWorkImages = () => {
+            workImagesGallery.innerHTML = ''; // Clear existing images
+            workImages.forEach((image) => {
+                const imgElement = document.createElement('img');
+                imgElement.src = image;
+                imgElement.alt = 'Work Image';
+                workImagesGallery.appendChild(imgElement);
+            });
+        };
+        renderWorkImages();
+
+        // Handle image upload
+        const fileInput = document.getElementById('add-work-image');
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const imageUrl = reader.result;
+
+                    // Add the new image to the workImages array and localStorage
+                    workImages.push(imageUrl);
+                    localStorage.setItem('workImages', JSON.stringify(workImages));
+
+                    // Render the updated gallery
+                    renderWorkImages();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+document.addEventListener("DOMContentLoaded", () => {
+            const designerName = localStorage.getItem('designerName') || 'John Doe'; // Get the name
+            document.getElementById('designerName').textContent = designerName;
+            document.getElementById('designerNameDisplay').textContent = designerName;        });
+
+    function openModal() {
+            // Pre-fill the modal fields with current values
+            document.getElementById('edit-name').value = localStorage.getItem('designerName') || 'John Doe';
+            document.getElementById('edit-place').value = localStorage.getItem('designerPlace') || 'New York';
+            document.getElementById('edit-address').value = localStorage.getItem('designerAddress') || '123 Main Street';
+            document.getElementById('edit-email').value = localStorage.getItem('designerEmail') || 'johndoe@example.com';
+            document.getElementById('edit-phone').value = localStorage.getItem('designerPhone') || '+123456789';
+
+            // Display the modal
+            document.getElementById('edit-modal').style.display = 'flex';
+        }
+
+        // Close the Edit Details Modal
+        function closeModal() {
+            document.getElementById('edit-modal').style.display = 'none';
+        }
+
+        // Save the Edited Details
+        function saveDetails() {
+            // Get the updated values from modal fields
+            const name = document.getElementById('edit-name').value;
+            const place = document.getElementById('edit-place').value;
+            const address = document.getElementById('edit-address').value;
+            const email = document.getElementById('edit-email').value;
+            const phone = document.getElementById('edit-phone').value;
+
+            // Save the details to localStorage
+            localStorage.setItem('designerName', name);
+            localStorage.setItem('designerPlace', place);
+            localStorage.setItem('designerAddress', address);
+            localStorage.setItem('designerEmail', email);
+            localStorage.setItem('designerPhone', phone);
+
+            // Update the UI dynamically
+            document.getElementById('designer-details').innerHTML = `
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Place:</strong> ${place}</p>
+                <p><strong>Address:</strong> ${address}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+            `;
+
+            // Close the modal
+            closeModal();  
+}
+    function editPoster() {
+            const posterInput = document.getElementById('edit-poster');
+            const isHidden = posterInput.style.display === 'none' || posterInput.style.display === '';
+            posterInput.style.display = isHidden ? 'block' : 'none';
+        }
+
+
+        function updatePoster() {
+            const file = document.getElementById('edit-poster').files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const imageUrl = reader.result;
+                    localStorage.setItem('posterImage', imageUrl);
+                    location.reload();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+ function logout() {
+            localStorage.removeItem("username");
+            window.location.href = "index.html";
+        }
+
+
+    </script>
+
+    </body>
+</html>
